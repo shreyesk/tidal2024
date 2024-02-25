@@ -1,4 +1,4 @@
-drive time,texting,talking on phone,operating the radio,drinking,reaching behind,talking to passenger
+drive time,texting,talking on phone,drinking,reaching behind,talking to passenger,normal driving
 36,1,4,1,5,9,2
 42,9,9,7,9,3,2
 20,2,6,4,3,3,8
@@ -12,3 +12,6 @@ drive time,texting,talking on phone,operating the radio,drinking,reaching behind
 1,0,0,0,0,1,0
 1,0,20,6,0,18,8
 2,0,50,42,0,49,2
+1,0,1,0,0,0,1
+3,3,24,0,15,26,3
+2,5,8,0,3,11,5

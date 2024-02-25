@@ -1,72 +1,43 @@
 import cv2
-import numpy as np
-from tensorflow.keras.models import load_model
-from datetime import datetime
-import csv
-import math
+import os
 
-# Load the pre-trained model
-model = load_model('ani_model.h5')
+def main():
+    # Prompt the user for a folder name
+    folder_name = input("Enter the folder name where you want to save the frames: ")
 
-# Start the camera
-cap = cv2.VideoCapture(0)
+    # Create the folder if it does not exist
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+        print(f"Folder '{folder_name}' created.")
 
-last_class = -1
-classes_seen = [0 for i in range(10)]
-start_time = datetime.now()
-while True:
-    # Capture frame-by-frame in grayscale
-    ret, frame = cap.read()
-    if ret:
-        # Convert the frame to grayscale (if not already in grayscale)
-        gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    # Start the camera
+    cap = cv2.VideoCapture(0)
 
-        # Resize the frame to 256x256
-        resized_frame = cv2.resize(gray_frame, (256, 256))
+    print("Starting video capture. Press 'q' to stop and save frames.")
 
-        # Preprocess the frame for the model
-        # Reshape the frame to add the channel dimension
-        img_array = resized_frame.reshape(256, 256, 1)
-        img_array = np.expand_dims(img_array, axis=0) / 255.0  # Normalize and add the batch dimension
-
-        # Make a prediction
-        prediction = model.predict(img_array)
-        predicted_class = int(np.argmax(prediction, axis=1))
-
-        if predicted_class != last_class:
-            last_class = predicted_class
-            classes_seen[predicted_class] += 1
-
-        # Display the prediction (using the original frame for display)
-        cv2.putText(frame, f'Predicted class: {predicted_class}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+    frame_count = 0
+    while True:
+        # Capture frame-by-frame
+        ret, frame = cap.read()
+        if not ret:
+            break
 
         # Display the resulting frame
         cv2.imshow('Frame', frame)
 
-    # Press 'q' to exit the loop
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+        # Save the frame
+        frame_path = os.path.join(folder_name, f"frame_{frame_count:04d}.png")
+        cv2.imwrite(frame_path, frame)
+        frame_count += 1
 
-end_time = datetime.now()
-# When everything is done, release the capture
-cap.release()
-cv2.destroyAllWindows()
+        # Press 'q' to exit the loop
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
-# Write everything to CSV
-data = {
-    'drive time': int(math.ceil(((end_time - start_time).total_seconds()) / 60)),
-    'texting': classes_seen[1] + classes_seen[3],
-    'talking on phone': classes_seen[2] + classes_seen[4],
-    'operating the radio': classes_seen[5],
-    'drinking': classes_seen[6],
-    'reaching behind': classes_seen[7],
-    'talking to passenger': classes_seen[9],
-}
+    # When everything is done, release the capture
+    cap.release()
+    cv2.destroyAllWindows()
+    print(f"Video capture stopped. {frame_count} frames were saved in '{folder_name}'.")
 
-# Specify the file name for your CSV
-file_name = 'data.csv'
-
-# Open the file in append mode
-with open(file_name, 'a', newline='') as csvfile:
-    writer = csv.DictWriter(csvfile, fieldnames=data.keys())
-    writer.writerow(data)
+if __name__ == "__main__":
+    main()

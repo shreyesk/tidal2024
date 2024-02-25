@@ -31,11 +31,6 @@ function MostRecentDrivePage() {
                 numMinutes={getData['drive time']}
             />
             <StatisticBar
-                statisticLabel="# of times you messed with infotainment"
-                userOccurrences={getData['operating the radio']}
-                numMinutes={getData['drive time']}
-            />
-            <StatisticBar
                 statisticLabel="# of times you drank"
                 userOccurrences={getData['drinking']}
                 numMinutes={getData['drive time']}

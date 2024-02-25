@@ -32,7 +32,7 @@ while True:
         # Make a prediction
         prediction = model.predict(img_array)
         predicted_class = int(np.argmax(prediction, axis=1))
-
+        print(f'predicted: {predicted_class}')
         if predicted_class != last_class:
             last_class = predicted_class
             classes_seen[predicted_class] += 1
@@ -55,12 +55,12 @@ cv2.destroyAllWindows()
 # Write everything to CSV
 data = {
     'drive time': int(math.ceil(((end_time - start_time).total_seconds()) / 60)),
-    'texting': classes_seen[1] + classes_seen[3],
-    'talking on phone': classes_seen[2] + classes_seen[4],
-    'operating the radio': classes_seen[5],
-    'drinking': classes_seen[6],
-    'reaching behind': classes_seen[7],
-    'talking to passenger': classes_seen[9],
+    'normal_driving': classes_seen[5],
+    'texting': classes_seen[0],
+    'talking on phone': classes_seen[1],
+    'drinking': classes_seen[2],
+    'reaching behind': classes_seen[3],
+    'talking to passenger': classes_seen[4],
 }
 
 # Specify the file name for your CSV
