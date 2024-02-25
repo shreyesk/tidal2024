@@ -9,9 +9,10 @@ function AllTimeStatsPage() {
 
   useEffect(() => {
     fetchGet("/get-all-time-drive-stats").then((data) => {
-      setGetData(data.message);
+      setGetData(data);
+      console.log("ALLTIME: data: ", data);
     });
-  });
+  }, []);
 
   return (
     <div className="App">
@@ -21,37 +22,32 @@ function AllTimeStatsPage() {
         <div className="statistics-container">
             <StatisticBar
                 statisticLabel="# of times you texted"
-                userOccurrences="50"
+                userOccurrences={getData['texting']}
                 medianValue="40"
             />
             <StatisticBar
                 statisticLabel="# of times you talked on the phone"
-                userOccurrences="50"
+                userOccurrences={getData['talking on phone']}
                 medianValue="60"
             />
             <StatisticBar
                 statisticLabel="# of times you messed with infotainment"
-                userOccurrences="50"
+                userOccurrences={getData['operating the radio']}
                 medianValue="40"
             />
             <StatisticBar
                 statisticLabel="# of times you drank"
-                userOccurrences="50"
+                userOccurrences={getData['drinking']}
                 medianValue="40"
             />
             <StatisticBar
                 statisticLabel="# of times you reached into the backseat"
-                userOccurrences="50"
-                medianValue="40"
-            />
-            <StatisticBar
-                statisticLabel="# of times you did hair or makeup"
-                userOccurrences="50"
+                userOccurrences={getData['reaching behind']}
                 medianValue="40"
             />
             <StatisticBar
                 statisticLabel="# of times you were distracted by your passengers"
-                userOccurrences="50"
+                userOccurrences={getData['talking to passenger']}
                 medianValue="40"
             />
         </div>
