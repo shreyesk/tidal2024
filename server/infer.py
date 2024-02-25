@@ -14,6 +14,16 @@ cap = cv2.VideoCapture(0)
 last_class = -1
 classes_seen = [0 for i in range(10)]
 start_time = datetime.now()
+translations = {
+    1: 'texting',
+    3: 'texting',
+    2: 'talking on phone',
+    4: 'talking on phone',
+    5: 'operating radio', 
+    6: 'drinking',
+    7: 'reaching behind',
+    9: 'talking to passenger'
+}
 while True:
     # Capture frame-by-frame in grayscale
     ret, frame = cap.read()
