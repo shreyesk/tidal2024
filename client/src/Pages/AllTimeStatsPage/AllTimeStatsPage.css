@@ -1,0 +1,14 @@
+.statistics-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: 60px auto; /* Centering the flexbox and adding top and bottom margin */
+}
+  
+  /* Add this if you want to ensure the width inside a larger container */
+  /* You may need to adjust the max-width of .App or a higher-level container */
+.App {
+    max-width: 100%;
+}
+  
