@@ -16,7 +16,7 @@ function MostRecentDrivePage() {
 
   return (
     <div className="App">
-      {(typeof driveData === "undefined") ? (
+      {(typeof getData === "undefined") ? (
         <p>Loading...</p>
       ): (
         <div className="statistics-container">

@@ -12,9 +12,9 @@ const App = () => {
     <div>
       <NavigationBar />
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/all-time-stats" element={<AllTimeStatsPage />} />
+        <Route path="/" element={<MostRecentDrivePage />} />
         <Route path="/most-recent-drive" element={<MostRecentDrivePage />} />
+        <Route path="/all-time-stats" element={<AllTimeStatsPage />} />
       </Routes>
     </div>
   );

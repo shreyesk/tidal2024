@@ -2,17 +2,18 @@ import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
-
+from datetime import datetime
 import csv
 
 # Load the pre-trained model
-model = load_model('model.h5')
+model = load_model('ani_model.h5')
 
 # Start the camera
 cap = cv2.VideoCapture(0)
 
 last_class = -1
 classes_seen = [0 for i in range(10)]
+start_time = datetime.now()
 while True:
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -30,7 +31,7 @@ while True:
 
         # Make a prediction
         prediction = model.predict(img_array)
-        predicted_class = np.argmax(prediction, axis=1)
+        predicted_class = int(np.argmax(prediction, axis=1))
 
         if predicted_class != last_class:
             last_class = predicted_class
@@ -46,6 +47,7 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
+end_time = datetime.now()
 # When everything is done, release the capture
 cap.release()
 cv2.destroyAllWindows()
@@ -53,7 +55,7 @@ cv2.destroyAllWindows()
 # write everything to csv
 # Your dictionary with column headers as keys and row values as values
 data = {
-    'drive time': 1000, # TODO make this number actually be calculated
+    'drive time': int((end_time - start_time).total_seconds()), # TODO make this number actually be calculated
     'texting': classes_seen[1] + classes_seen[3],
     'talking on phone': classes_seen[2] + classes_seen[4],
     'operating the radio': classes_seen[5],
@@ -69,9 +71,6 @@ file_name = 'data.csv'
 with open(file_name, 'a', newline='') as csvfile:
     # Create a DictWriter object with the column headers
     writer = csv.DictWriter(csvfile, fieldnames=data.keys())
-    
-    # Write the header (column names)
-    writer.writeheader()
     
     # Write the data row
     writer.writerow(data)

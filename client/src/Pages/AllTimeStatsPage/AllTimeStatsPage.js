@@ -5,7 +5,7 @@ import { fetchGet } from "../../util/fetchHelp.js";
 import "./AllTimeStatsPage.css";
 
 function AllTimeStatsPage() {
-  const [driveData, setDriveData] = useState([])
+  const [getData, setGetData] = useState([])
 
   useEffect(() => {
     fetchGet("/get-all-time-drive-stats").then((data) => {
@@ -16,7 +16,7 @@ function AllTimeStatsPage() {
 
   return (
     <div className="App">
-      {(typeof driveData === "undefined") ? (
+      {(typeof getData === "undefined") ? (
         <p>Loading...</p>
       ): (
         <div className="statistics-container">
