@@ -1,57 +1,58 @@
 import React, { useEffect, useState } from 'react';
 
-import { fetchGet, fetchPost } from '../../util/fetchHelp.js';
 import StatisticBar from '../../Components/Statistic/StatisticBar.js';
+import { fetchGet } from '../../util/fetchHelp.js';
 import './MostRecentDrivePage.css';
 
 function MostRecentDrivePage() {
-  const [getData, setGetData] = useState()
+  const [driveData, setDriveData] = useState([])
 
   useEffect(() =>{
     fetchGet("/get-most-recent-drive-stats").then(data => {
-      setGetData(data.message);
+      setDriveData(data.message);
+      console.log(driveData);
     });
   })
 
   return (
     <div className="App">
-      {(typeof getData === "undefined") ? (
+      {(typeof driveData === "undefined") ? (
         <p>Loading...</p>
       ): (
         <div className="statistics-container">
             <StatisticBar
                 statisticLabel="# of times you were texting"
-                userOccurrences="50"
+                userOccurrences={driveData[1]}
                 medianValue="40"
             />
             <StatisticBar
                 statisticLabel="# of times you were talking on phone"
-                userOccurrences="50"
+                userOccurrences={driveData[2]}
                 medianValue="60"
             />
             <StatisticBar
                 statisticLabel="# of times you were operating the radio"
-                userOccurrences="50"
+                userOccurrences={driveData[3]}
                 medianValue="40"
             />
             <StatisticBar
                 statisticLabel="# of times you were drinking"
-                userOccurrences="50"
+                userOccurrences={driveData[4]}
                 medianValue="40"
             />
             <StatisticBar
                 statisticLabel="# of times you were reaching behind"
-                userOccurrences="50"
+                userOccurrences={driveData[5]}
                 medianValue="40"
             />
             <StatisticBar
                 statisticLabel="# of times you were hair and makeup"
-                userOccurrences="50"
+                userOccurrences={driveData[6]}
                 medianValue="40"
             />
             <StatisticBar
                 statisticLabel="# of times you were talking to passanger"
-                userOccurrences="50"
+                userOccurrences={driveData[7]}
                 medianValue="40"
             />
         </div>
