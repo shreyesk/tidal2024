@@ -20,37 +20,37 @@ function MostRecentDrivePage() {
       ): (
         <div className="statistics-container">
             <StatisticBar
-                statisticLabel="# of times you texted"
+                statisticLabel="# of times you were texting"
                 userOccurrences="50"
                 medianValue="40"
             />
             <StatisticBar
-                statisticLabel="# of times you talked on the phone"
+                statisticLabel="# of times you were talking on phone"
                 userOccurrences="50"
                 medianValue="60"
             />
             <StatisticBar
-                statisticLabel="# of times you messed with infotainment"
+                statisticLabel="# of times you were operating the radio"
                 userOccurrences="50"
                 medianValue="40"
             />
             <StatisticBar
-                statisticLabel="# of times you drank"
+                statisticLabel="# of times you were drinking"
                 userOccurrences="50"
                 medianValue="40"
             />
             <StatisticBar
-                statisticLabel="# of times you reached into the backseat"
+                statisticLabel="# of times you were reaching behind"
                 userOccurrences="50"
                 medianValue="40"
             />
             <StatisticBar
-                statisticLabel="# of times you did hair or makeup"
+                statisticLabel="# of times you were hair and makeup"
                 userOccurrences="50"
                 medianValue="40"
             />
             <StatisticBar
-                statisticLabel="# of times you were distracted by your passengers"
+                statisticLabel="# of times you were talking to passanger"
                 userOccurrences="50"
                 medianValue="40"
             />
