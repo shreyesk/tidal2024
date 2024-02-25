@@ -1,27 +1,25 @@
 import "./StatisticBar.css";
 
-const StatisticBar = ({ statisticLabel, userOccurrences, medianValue }) => {
-  const comparisonText = Number(userOccurrences) > Number(medianValue) ? 'more' : 'less';
-  const comparisonColor = Number(userOccurrences) > Number(medianValue) ? 'red' : 'green';
+const StatisticBar = ({ statisticLabel, userOccurrences, numMinutes }) => {
 
   const leftSideStyle = {
     fontWeight: 'bold',
     color: 'black',
-    flex: 1, // This will ensure the items take equal space
-    textAlign: 'left', // Align text to the left
+    flex: 1,
+    textAlign: 'left',
     fontSize: '40px',
   };
 
   const centerStyle = {
     flex: 1,
-    textAlign: 'center', // Align text to the center
+    textAlign: 'center',
   };
 
   const rightSideStyle = {
-    color: comparisonColor,
+    color: 'black',
     fontWeight: 'normal',
     flex: 1,
-    textAlign: 'right', // Align text to the right
+    textAlign: 'right',
   };
 
   return (
@@ -31,7 +29,7 @@ const StatisticBar = ({ statisticLabel, userOccurrences, medianValue }) => {
       <span style={centerStyle}>{statisticLabel}</span>
 
       <span style={rightSideStyle}>
-        {`${Math.abs(userOccurrences - medianValue)} times ${comparisonText} than the median`}
+        {`${Math.abs(userOccurrences / numMinutes).toFixed(2)} times per minute`}
       </span>
     </div>
   );
