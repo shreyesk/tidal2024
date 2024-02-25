@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavigationBar from "./Components/NavBar/NavBar";
 import "./index.css";
 import Landing from "./Pages/Landing/Landing";
+import AllTimeStatsPage from "./Pages/AllTimeStatsPage/AllTimeStatsPage";
+import MostRecentDrivePage from "./Pages/MostRecentDrivePage/MostRecentDrivePage";
 
 const App = () => {
   return (
@@ -11,6 +13,8 @@ const App = () => {
       <NavigationBar />
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/all-time-stats" element={<AllTimeStatsPage />} />
+        <Route path="/most-recent-drive" element={<MostRecentDrivePage />} />
       </Routes>
     </div>
   );

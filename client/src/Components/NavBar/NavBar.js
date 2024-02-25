@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const NavigationBar = () => {
   const navigate = useNavigate();
-  const buttons = { Home: "/", Test: "/hi" };
+  const buttons = { "Your All-Time Stats": "/all-time-stats", "Most Recent Drive": "/most-recent-drive" };
 
   const [value, setValue] = useState(0);
 
