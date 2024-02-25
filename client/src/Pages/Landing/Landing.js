@@ -9,14 +9,14 @@ function Landing() {
   const [postData, setPostData] = useState()
 
   useEffect(() =>{
-    fetchGet("/default_greet").then(data => {
-      setGetData(data.message);
-    });
+    // fetchGet("/default_greet").then(data => {
+    //   setGetData(data.message);
+    // });
 
-    const postData = {'name': 'Jason'}
-    fetchPost("/greet", postData).then(data => {
-      setPostData(data.message);
-    });
+    // const postData = {'name': 'Jason'}
+    // fetchPost("/greet", postData).then(data => {
+    //   setPostData(data.message);
+    // });
 
   })
 
