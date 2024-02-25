@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-import { fetchGet } from "../../util/fetchHelp.js";
 import StatisticBar from "../../Components/Statistic/StatisticBar.js";
+import { fetchGet } from "../../util/fetchHelp.js";
 import "./AllTimeStatsPage.css";
 
 function AllTimeStatsPage() {
-  const [getData, setGetData] = useState();
+  const [driveData, setDriveData] = useState([])
 
   useEffect(() => {
     fetchGet("/get-all-time-drive-stats").then((data) => {
@@ -16,9 +16,9 @@ function AllTimeStatsPage() {
 
   return (
     <div className="App">
-      {typeof getData === "undefined" ? (
+      {(typeof driveData === "undefined") ? (
         <p>Loading...</p>
-      ) : (
+      ): (
         <div className="statistics-container">
             <StatisticBar
                 statisticLabel="# of times you texted"

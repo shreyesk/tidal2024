@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { fetchGet, fetchPost } from '../../util/fetchHelp.js';
 import StatisticBar from '../../Components/Statistic/StatisticBar.js';
+import { fetchGet } from '../../util/fetchHelp.js';
 import './MostRecentDrivePage.css';
 
 function MostRecentDrivePage() {
@@ -16,7 +16,7 @@ function MostRecentDrivePage() {
 
   return (
     <div className="App">
-      {(typeof getData === "undefined") ? (
+      {(typeof driveData === "undefined") ? (
         <p>Loading...</p>
       ): (
         <div className="statistics-container">
